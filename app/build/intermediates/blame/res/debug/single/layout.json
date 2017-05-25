@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "F:\\demo_code\\android\\JsBridgeDemo\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_main.xml",
+        "source": "F:\\demo_code\\android\\JsBridgeDemo\\app\\src\\main\\res\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "F:\\demo_code\\android\\JsBridgeDemo\\app\\build\\intermediates\\res\\merged\\debug\\layout\\second_activity.xml",
+        "source": "F:\\demo_code\\android\\JsBridgeDemo\\app\\src\\main\\res\\layout\\second_activity.xml"
+    }
+]

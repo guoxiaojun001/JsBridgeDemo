@@ -1,0 +1,157 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>补充信息</title>
+    <link rel="stylesheet" type="text/css" href="css1.css">
+    <script type="text/javascript" src="jquery.min.js"></script>
+</head>
+<body class="bodyk">
+<section id="loanPricesection">
+    <input type="hidden" id="maxLimit" value="1000"/><input type="hidden" id="merchantId"/><input type="hidden" id="minLimit" value="50"/><input type="hidden" id="pictureInfoso"/>
+    <form id="loan_form1" class="loan_form1">
+        <ul>
+            <li><label>期望借款金额（元）</label><input type="text" id="expectedLimit"/></li>
+            <li><label>期望贷款期限</label><select id="expectedPeriod" ></select></li>
+            <li><label>贷款用途</label><select id="loanUse"></select></li>
+            <li><label>门店名称</label><input type="text" id="merchantName" placeholder="输入店铺名称"/></li>
+            <li><label>营业执照注册号</label><input type="text" id="businessLicense" placeholder="输入营业执照注册号"/></li>
+            <li><label>经营面积</label><input type="text" id="operatingArea" placeholder="请输入店铺面积"/></li>
+            <li><label>商户电话</label><input type="tel" id="merchantPhone" placeholder="输入店铺电话"/></li>
+            <li><label>年经营收入</label><input type="text" id="operatingIncome" placeholder="输入店铺年经营收入"/></li>
+        </ul>
+        <div>
+            <h3>本人与营业场所合照</h3>
+            <div id="loan_formPicture"><span>+</span><input type="file" accept="image/*;" capture="camera" id="pictureInfo"></div>
+        </div>
+        <canvas width="0" height="0" ></canvas>
+    </form>
+    <div class="loanapply"><a id="buttons">提交贷款申请</a></div>
+
+</section>
+<div class="loanfull" onclick="loanshadow()"><div><span><img width="100%"/></span></div></div>
+<div class="loanbalck" onclick="loanshadow()"></div>
+<script type="text/javascript">
+function setupWebViewJavascriptBridge(callback) {
+    if (window.WebViewJavascriptBridge) { return callback(WebViewJavascriptBridge); }
+    if (window.WVJBCallbacks) { return window.WVJBCallbacks.push(callback); }
+    window.WVJBCallbacks = [callback];
+    var WVJBIframe = document.createElement('iframe');
+    WVJBIframe.style.display = 'none';
+    WVJBIframe.src = 'https://__bridge_loaded__';
+    document.documentElement.appendChild(WVJBIframe);
+    setTimeout(function() { document.documentElement.removeChild(WVJBIframe) }, 0)
+}
+<!-- 处理交互  方法名要和ios内定义的对应-->
+setupWebViewJavascriptBridge(function(bridge) {
+    <!--处理 oc 调用 js -->
+    bridge.registerHandler('registerAction', function(data, responseCallback) {
+       alert('oc请求js  传值参数是：'+JSON.stringify(data))
+       var limit="请输入期望借款金额("+parseInt(data.minLimit)/1000+"K-"+parseInt(data.maxLimit)/1000+"K)";
+       $("#expectedLimit").attr("placeholder",limit)
+       $("#merchantId").val(data.merchantId);
+       $("#maxLimit").val(data.maxLimit);
+       $("#minLimit").val(data.minLimit);
+        $.each(data.periodList,function(i2,ele2){
+        	var period=ele2.period;
+			option ="<option value='"+period+"期'>"+period+"期</option>";
+			$("#expectedPeriod").append(option);
+		});
+
+		$.each(data.loanUseList,function(i,ele1){
+			var loanUseName=ele1.loanUseName;
+			option ="<option value='"+ele1.loanUserNum+"'>"+loanUseName+"</option>";
+			$("#loanUse").append(option);
+		});
+    	  var responseData = { 'result':'传送成功' }
+    	　　responseCallback(responseData)
+    	})
+})
+$("#expectedLimit").bind('blur', function() {
+	var limitvalue=$("#expectedLimit").val();
+	var limitvaluemax=$("#maxLimit").val();
+	var limitvaluemin=$("#minLimit").val();
+	if(limitvalue<limitvaluemin||limitvalue>limitvaluemax){
+		$("#expectedLimit").val("");
+		 var limit="请输入期望借款金额("+parseInt(limitvaluemin)/1000+"K-"+parseInt(limitvaluemax)/1000+"K)";
+	     $("#expectedLimit").attr("placeholder",limit);
+	}
+})
+function drawOnCanvas(file) {
+    var reader = new FileReader();
+    reader.onload = function(e) {
+        var dataURL = e.target.result,
+        canvas = document.querySelector('canvas'),
+        ctx = canvas.getContext('2d'),
+        img = new Image();
+        img.onload = function() {
+            var square = 100;
+            canvas.width = square;
+            canvas.height = square;
+            var context = canvas.getContext('2d');
+            context.clearRect(0, 0, square, square);
+            var imageWidth;
+            var imageHeight;
+            var offsetX = 0;
+            var offsetY = 0;
+            if (this.width > this.height) {
+                imageWidth = Math.round(square * this.width / this.height);
+                imageHeight = square;
+                offsetX = -Math.round((imageWidth - square) / 2);
+            } else {
+                imageHeight = Math.round(square * this.height / this.width);
+                imageWidth = square;
+                offsetY = -Math.round((imageHeight - square) / 2);
+            }
+            context.drawImage(this, offsetX, offsetY, imageWidth, imageHeight);
+            var base64 = canvas.toDataURL('image/jpeg', 0.5);
+
+        };
+        img.src = dataURL;
+        $("#pictureInfoso").val(dataURL);
+    };
+    reader.readAsDataURL(file);
+}
+document.querySelector('input[type=file]').onchange = function() {
+	$("#loan_formPicture").hide();
+    var file = $("#pictureInfo")[0].files[0];
+    drawOnCanvas(file);
+};
+document.querySelector('canvas').onclick=function(){
+	$(".loanfull").css("display","block");
+	$(".loanbalck").css("display","block");
+	$(".loanfull").find("img").attr("src",$("#pictureInfoso").val());
+}
+function loanshadow(){
+	$(".loanfull").hide();
+	$(".loanbalck").hide();
+}
+setupWebViewJavascriptBridge(function(bridge) {
+	var callbackButton = document.getElementById('buttons');
+	callbackButton.onclick = function(e) {
+		e.preventDefault();
+		var upload={};
+		//upload.merchantId=$("#merchantId").val();
+		upload.expectedLimit=$("#expectedLimit").val();
+		upload.expectedPeriod=$("#expectedPeriod").val();
+		upload.loanUse=$("#loanUse").val();
+		upload.merchantName=$("#merchantName").val();
+		upload.businessLicense=$("#businessLicense").val();
+		upload.operatingArea=$("#operatingArea").val();
+		upload.merchantPhone=$("#merchantPhone").val();
+		upload.operatingIncome=$("#operatingIncome").val();
+		upload.pictureInfo=$("#pictureInfoso").val();
+		var uploadss=JSON.stringify(upload);
+        <!--处理 js 调用 oc -->
+		bridge.callHandler('loginAction', uploadss, function(response) {
+			 //处理oc过来的回调
+             alert('收到oc过来的回调:'+response);
+		})
+	}
+})
+</script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="F:\demo_code\android\JsBridgeDemo\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="f8efd0096475e0daf054267b61544e10dc776503">
+        <dex dex="F:\demo_code\android\JsBridgeDemo\app\build\intermediates\pre-dexed\debug\com.android.support-support-v4-22.2.1_4faa6f78e1ae2c97f8d3584327b9ab0d9acd0ebc.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\develop\AndroidStudio\gradle\m2repository\com\google\code\gson\gson\2.2.4\gson-2.2.4.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="a60a5e993c98c864010053cb901b7eab25306568">
+        <dex dex="F:\demo_code\android\JsBridgeDemo\app\build\intermediates\pre-dexed\debug\gson-2.2.4_996ecaac17dd8eec8e5fcbbf1b86fc9468e6696e.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\develop\AndroidStudio\gradle\m2repository\com\google\code\gson\gson\2.2.4\gson-2.2.4.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="a60a5e993c98c864010053cb901b7eab25306568">
+        <dex dex="F:\demo_code\android\JsBridgeDemo\app\build\intermediates\pre-dexed\debug\gson-2.2.4_996ecaac17dd8eec8e5fcbbf1b86fc9468e6696e.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="F:\demo_code\android\JsBridgeDemo\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.1\jars\libs\internal_impl-22.2.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="c471eaaba13ff64f6e0383d1c30a9cdc9a97efeb">
+        <dex dex="F:\demo_code\android\JsBridgeDemo\app\build\intermediates\pre-dexed\debug\internal_impl-22.2.1_f97553ea8f2cda3f6979e0d4dfb2e820ae64100d.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="F:\demo_code\android\JsBridgeDemo\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.1\jars\libs\internal_impl-22.2.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="c471eaaba13ff64f6e0383d1c30a9cdc9a97efeb">
+        <dex dex="F:\demo_code\android\JsBridgeDemo\app\build\intermediates\pre-dexed\debug\internal_impl-22.2.1_f97553ea8f2cda3f6979e0d4dfb2e820ae64100d.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\develop\sdk\extras\android\m2repository\com\android\support\support-annotations\22.2.1\support-annotations-22.2.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="61a0ff5c29295ec56d7e0bd3d25d95dbf71b4b2b">
+        <dex dex="F:\demo_code\android\JsBridgeDemo\app\build\intermediates\pre-dexed\debug\support-annotations-22.2.1_dd5331960d00fec963a4fb79de7eab33ceca79e7.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\develop\sdk\extras\android\m2repository\com\android\support\support-annotations\22.2.1\support-annotations-22.2.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="61a0ff5c29295ec56d7e0bd3d25d95dbf71b4b2b">
+        <dex dex="F:\demo_code\android\JsBridgeDemo\app\build\intermediates\pre-dexed\debug\support-annotations-22.2.1_dd5331960d00fec963a4fb79de7eab33ceca79e7.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="F:\demo_code\android\JsBridgeDemo\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="f8efd0096475e0daf054267b61544e10dc776503">
+        <dex dex="F:\demo_code\android\JsBridgeDemo\app\build\intermediates\pre-dexed\debug\com.android.support-support-v4-22.2.1_4faa6f78e1ae2c97f8d3584327b9ab0d9acd0ebc.jar" />
+    </item>
+
+</items>
